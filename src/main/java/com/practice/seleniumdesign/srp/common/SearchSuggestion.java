@@ -1,14 +1,12 @@
-package com.practice.seleniumdesign.srp;
+package com.practice.seleniumdesign.srp.common;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
-public class SearchSuggestion extends AbstractComponent{
+public class SearchSuggestion extends AbstractComponent {
 
     @FindBy (css = "li.sbct")
     private List<WebElement> suggestions;

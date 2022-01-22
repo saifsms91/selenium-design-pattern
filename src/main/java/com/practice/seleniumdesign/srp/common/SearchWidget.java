@@ -1,14 +1,10 @@
-package com.practice.seleniumdesign.srp;
+package com.practice.seleniumdesign.srp.common;
 
 import com.google.common.util.concurrent.Uninterruptibles;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
 
@@ -26,7 +22,7 @@ public class SearchWidget extends AbstractComponent {
 
         for (char ch:keyword.toCharArray()) {
             Uninterruptibles.sleepUninterruptibly(20, TimeUnit.MILLISECONDS);
-            this.searchBox.sendKeys(keyword);
+            this.searchBox.sendKeys(ch+"");
 
 
         }
