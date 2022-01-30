@@ -1,10 +1,11 @@
 package com.practice.seleniumdesign.test.srp;
 
-import com.practice.seleniumdesign.srp.GoogleMainPage;
-import com.practice.seleniumdesign.srp.GoogleResultPage;
+import com.practice.seleniumdesign.srp.main.GoogleMainPage;
+import com.practice.seleniumdesign.srp.result.GoogleResultPage;
 import com.practice.seleniumdesign.test.BaseTest;
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class GoogleTest extends BaseTest {
@@ -18,19 +19,19 @@ public class GoogleTest extends BaseTest {
         this.googleResultPage = new GoogleResultPage(driver);
     }
 
-    @Test
-    public void googleWorkFlow(){
+    @Test(dataProvider = "getData")
+    public void googleWorkFlow(String keyword,int index){
 
-        String keyWord = "Selenium Webdriver";
-        int index = 3;
+//        String keyWord = "Selenium Webdriver";
+//        int index = 3;
         googleMainPage.goTO();
         Assert.assertTrue(googleMainPage.getSearchWidget().isDisplayed());
-        googleMainPage.getSearchWidget().enter(keyWord);
+        googleMainPage.getSearchWidget().enter(keyword);
         Assert.assertTrue(googleMainPage.getSearchSuggestion().isDisplayed());
         googleMainPage.getSearchSuggestion().clickSuggestionByIndex(index);
         Assert.assertTrue(googleResultPage.getNavigationBar().isDisplayed());
 
-        googleResultPage.getSearchWidget().enter(keyWord);
+        googleResultPage.getSearchWidget().enter(keyword);
         Assert.assertTrue(googleResultPage.getSearchSuggestion().isDisplayed());
 
 
@@ -39,5 +40,13 @@ public class GoogleTest extends BaseTest {
         googleResultPage.getNavigationBar().goToNews();
         System.out.print(googleResultPage.getResultStat().getStat());
 
+    }
+
+    @DataProvider
+    public Object[][] getData() {
+        return new Object[][]{
+                {"Selenium",3},
+                {"Docker",2}
+        };
     }
 }
